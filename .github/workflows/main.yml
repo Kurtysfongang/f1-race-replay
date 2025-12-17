@@ -49,4 +49,4 @@ jobs:
       uses: docker/build-push-action@v6
       with:
         push: true
-        tags: kurtysfongang/f1-race-replay:latest
+        tags: ${{ vars.DOCKERHUB_USERNAME }}/f1-race-replay:${{ vars.GITHUB_RUN_ID }}
