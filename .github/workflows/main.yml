@@ -45,7 +45,7 @@ jobs:
         username: ${{ vars.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-    - name: Tag and Push to DockerHyb
+    - name: Tag and Push to DockerHub
       run: |
-          docker tag f1-race-replay:v1 ${{ vars.DOCKERHUB_USERNAME }}/f1-race-replay:${{ github.run_number }}
+          docker tag my-image-name ${{ vars.DOCKERHUB_USERNAME }}/f1-race-replay:${{ github.run_number }}
           docker push ${{ vars.DOCKERHUB_USERNAME }}/f1-race-replay:${{ github.run_number }}
