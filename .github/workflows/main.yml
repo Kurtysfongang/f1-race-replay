@@ -1,10 +1,10 @@
-name: Build
+name: CI - Scan, Build, Test, Push
 on:
   push:
-    branches:
-      - main
+    branches: ["main"]
   pull_request:
-    types: [opened, synchronize, reopened]
+    branches: ["main"]
+
 jobs:
   sonarqube:
     name: SonarQube
@@ -17,3 +17,4 @@ jobs:
         uses: SonarSource/sonarqube-scan-action@v6
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          
