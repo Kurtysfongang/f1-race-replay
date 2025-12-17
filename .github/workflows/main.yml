@@ -19,6 +19,7 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
   build:
+    needs: sonarqube
  
     runs-on: ubuntu-latest
  
@@ -28,12 +29,13 @@ jobs:
       run: docker build . --file Dockerfile --tag my-image-name:$(date +%s) && docker images
 
   Trivy:
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@0.33.1
         with:
-          image-ref: 'docker.io/my-organization/my-app:${{ github.sha }}'
+          image-ref: 'my-image-name:$(date +%s)'
           format: 'table'
           exit-code: '1'
           ignore-unfixed: true
