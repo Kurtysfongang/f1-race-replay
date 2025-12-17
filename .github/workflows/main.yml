@@ -49,4 +49,4 @@ jobs:
       uses: docker/build-push-action@v6
       with:
         push: true
-        tags: my-image-name:latest
+        tags: kurtysfongang/f1-race-replay:latest
