@@ -26,7 +26,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s) && docker images
+      run: docker build . --file Dockerfile --tag my-image-name && docker images
 
   Trivy:
     needs: build
@@ -35,7 +35,7 @@ jobs:
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@0.33.1
         with:
-          image-ref: 'my-image-name:$(date +%s)'
+          image-ref: 'my-image-name'
           format: 'table'
           exit-code: '1'
           ignore-unfixed: true
